@@ -5,8 +5,8 @@ public class Exercises {
      */
     public boolean isPrime(long n) {
         if (n < 2) return false;
-        for(int i=2; i<=Math.sqrt(n); i++) {
-            if(n % i == 0) {
+        for (int i = 2; i <= Math.sqrt(n); i++) {
+            if (n % i == 0) {
                 return false;
             }
         }
@@ -20,8 +20,19 @@ public class Exercises {
         if the input is not a fibonacci number with description above, return -1
      */
     public long fibonacciIndex(long n) {
-        // todo
-        return -1;
+        if (n < 0) return -1; // Negative numbers cannot be in Fibonacci sequence
+
+        long a = 0, b = 1, index = 0;
+
+        while (a <= n) {
+            if (a == n) return index; // If the number is found, return the index
+            long temp = b;
+            b = a + b;
+            a = temp;
+            index++;
+        }
+
+        return -1; // If the number is not in the Fibonacci sequence
     }
 
     /*
@@ -43,11 +54,34 @@ public class Exercises {
         the output has to be a two-dimensional array of characters, so don't just print the triangle!
      */
     public char[][] generateTriangle(int n) {
-        // todo
-        return null;
+        if (n == 0) return new char[0][];
+
+        char[][] triangle = new char[n][];
+        for(int i = 0; i < n; i++) {
+            triangle[i] = new char[i+1];
+        }
+
+        for (int i = 0; i < triangle.length; i++) {
+            for (int j = 0; j < triangle[i].length; j++) {
+                if (i == n - 1) { // Last row should be all asterisks
+                    triangle[i][j] = '*';
+                } else if (j == 0 || j == i) { // First and last columns should be asterisks
+                    triangle[i][j] = '*';
+                } else {
+                    triangle[i][j] = ' ';
+                }
+            }
+        }
+
+        return triangle;
     }
 
+
     public static void main(String[] args) {
-        // you can test your code here, but then it should be checked with test cases
+        Exercises exercises = new Exercises();
+
+        // Test prime checker
+
+        }
     }
-}
+
